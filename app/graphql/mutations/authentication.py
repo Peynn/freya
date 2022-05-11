@@ -1,13 +1,13 @@
 import strawberry
 from strawberry.types import Info
 
-from app.graphql.types import UserType
 from app.repositories import user as UserRepository
+from app.services import authentication as AuthenticationService
 
 
 @strawberry.type
 class AuthenticationSuccess:
-    user: UserType
+    token: str
 
 
 @strawberry.type
@@ -21,12 +21,17 @@ AuthenticationResult = strawberry.union(
 
 
 @strawberry.field
-def authenticate(
-    self, username: str, password: str, info: Info
-) -> AuthenticationResult:
-    user = UserRepository.get_user(db=info.context["db"], user_id=username)
+def authenticate(email: str, password: str, info: Info) -> AuthenticationResult:
+    user = UserRepository.authenticate(
+        db=info.context["db"], email=email, plain_password=password
+    )
 
     if user is None:
+        return AuthenticationError("Password or email is wrong")
+
+    access_token = AuthenticationService.create_access_token(data={"sub": user.email})
+
+    if access_token is None:
         return AuthenticationError("Something went wrong")
 
-    return AuthenticationSuccess(user=UserType(id=user.id, email=user.email))
+    return AuthenticationSuccess(token=access_token)

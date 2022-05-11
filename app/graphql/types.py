@@ -2,6 +2,6 @@ import strawberry
 
 
 @strawberry.type
-class UserType:
+class User:
     id: strawberry.ID
     email: str

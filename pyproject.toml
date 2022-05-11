@@ -11,7 +11,13 @@ uvicorn = "^0.17.6"
 strawberry-graphql = "^0.111.2"
 SQLAlchemy = "^1.4.36"
 alembic = "^1.7.7"
+# needed postgres
+# waiting sqlalchemy 2.0 for upgrading to psycopg3
 psycopg2 = "^2.9.3"
+python-jose = "^3.3.0"
+cryptography = "^37.0.2" # python-jose extra
+passlib = "^1.7.4"
+bcrypt = "^3.2.2" # passlib extra
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"

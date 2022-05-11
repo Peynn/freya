@@ -2,5 +2,5 @@ import strawberry
 
 
 @strawberry.field
-def say_hello(self) -> str:
+def say_hello() -> str:
     return "Hello World"
