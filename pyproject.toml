@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "heimdall"
+version = "0.1.0"
+description = "Guardian of the Bifrost"
+authors = ["Peynn"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.77.1"
+uvicorn = "^0.17.6"
+strawberry-graphql = "^0.111.2"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+mypy = "^0.950"
+pre-commit = "^2.19.0"
+flake8 = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html
+[tool.isort]
+profile = "black"
