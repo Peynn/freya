@@ -6,7 +6,7 @@ from alembic import context
 from app.db.base import Base
 
 # add your model's MetaData object here
-from app.db.models import UserModel  # noqa: F401
+from app.db.models import User  # noqa: F401
 from config import SQLALCHEMY_DATABASE_URL
 
 # this is the Alembic Config object, which provides
